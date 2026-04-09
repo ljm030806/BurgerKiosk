@@ -34,9 +34,17 @@ namespace BurgerKiosk
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
-            
+            // 버거(메인 메뉴)가 하나도 선택되지 않았는지 확인
+            if (!rdoHamBurger.Checked && !rdoBulgogiBurger.Checked && !rdoChickenBurger.Checked)
+            {
+                // 경고 메시지 출력
+                lblTotalCost.ForeColor = Color.Red; // 경고 메시지를 빨간색으로 표시
+                lblTotalCost.Text = "주문을 해주세요";
+                return; // 아래 주문 로직을 실행하지 않고 메서드 종료
+            }
 
             int totalCost = 0;
+            lblTotalCost.ForeColor = Color.Blue;
             lstOrder.Items.Clear(); // 새 주문 시 깔끔하게 이전 리스트 초기화 추천
             
             if (rdoHamBurger.Checked) 
